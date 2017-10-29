@@ -1,0 +1,9 @@
+Package: grub-biglinux
+Version: 1.0.1-1big1
+Depends: grub-common
+Architecture: all
+Maintainer: Bruno Goncalves <www.biglinux.com.br>
+Section: admin
+Priority: optional
+Installed-Size:900
+Description: Theme and configuration for grub

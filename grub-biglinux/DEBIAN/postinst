@@ -1,0 +1,26 @@
+#! /bin/sh
+
+set -e
+
+if [ ! -e "/etc/default/grub" ]; then
+    echo 'GRUB_BACKGROUND="/boot/grub/themes/biglinux/background.png"
+GRUB_CMDLINE_LINUX=""
+GRUB_CMDLINE_LINUX_DEFAULT="splash quiet"
+GRUB_GFXPAYLOAD_LINUX="keep"
+GRUB_DEFAULT="0"
+GRUB_DISTRIBUTOR="`/usr/bin/lsb_release -d -s 2>/dev/null || echo BigLinux`"
+GRUB_GFXMODE="1024x768"
+GRUB_TIMEOUT="7"
+GRUB_THEME="/boot/grub/themes/biglinux/theme.txt"' > /etc/default/grub
+fi
+
+
+if [ "$(echo "$LANGUAGE" | grep pt_BR)" != "" ]; then
+  sed -i 's|title-text: ".*"|title-text: "Utilize as setas do teclado para escolher o sistema operacional e pressione enter"|g' /boot/grub/themes/biglinux/theme.txt
+else
+  sed -i 's|title-text: ".*"|title-text: "Use the arrow keys to choose the operating system and press enter"|g' /boot/grub/themes/biglinux/theme.txt
+fi
+
+update-grub
+
+exit 0
